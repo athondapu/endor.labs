@@ -3,38 +3,35 @@ package com.endor.labs;
 import com.endor.labs.controllers.PersonController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.test.web.servlet.MockMvc;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.containsString;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+/**
+ * THis is another approach to test the end-points without starting the server at all. Here we are mocking the HTTP requests.
+ * Spring provides a way to mock the requests and hand it over to the controller. The whole process is exactly the same way that we are processing the real HTTP request.
+ */
+@SpringBootTest
+@AutoConfigureMockMvc
 public class EndorApplicationMainTest {
 
     @Autowired
     private PersonController personController;
 
-    @LocalServerPort
-    private int port;
-
     @Autowired
-    private TestRestTemplate restTemplate;
-
-    /*
-        Simple sanity check test, that will fail if the application context cannot start.
-     */
-    @Test
-    public void checkContextLoads() {
-        assertThat(personController).isNotNull();
-    }
+    private MockMvc mockMvc;
 
     /*
         Sending an HTTP Request and assert the response. This is a default end-point to check application started or not.
      */
     @Test
     public void ping() throws Exception {
-        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/ping", String.class)).contains("PONG");
+        this.mockMvc.perform(get("/ping")).andDo(print()).andExpect(status().isOk()).andExpect(content().string(containsString("PONG")));
     }
 }

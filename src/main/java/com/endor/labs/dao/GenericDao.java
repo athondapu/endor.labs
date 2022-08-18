@@ -8,6 +8,10 @@ public interface GenericDao<T> {
 
     T save(T argData);
 
+    long count(Query argQuery, Class<?> argClass);
+
+    long countByCollectionName(String argCollectionName);
+
     T getRecordById(String argId);
 
     T findOne(Query argQuery);

@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 
 public class Retry {
     protected static final Logger logger = LoggerFactory.getLogger((Class) Retry.class);
-    private static final int MAX_RETRIES = 8;
+    private static final int MAX_RETRIES = 3;
     private static final long MAX_WAIT_MILLIS = 1000L;
 
     public static <T> T execute(final int numRetries, final long waitMillis, final String taskName, final Retryable<T> retryable) {

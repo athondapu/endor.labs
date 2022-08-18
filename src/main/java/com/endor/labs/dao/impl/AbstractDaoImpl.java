@@ -30,6 +30,16 @@ public abstract class AbstractDaoImpl<T> implements GenericDao<T> {
     }
 
     @Override
+    public long count(Query argQuery, Class<?> argClass) {
+        return Retry.execute("save", () -> this.mongoTemplate.count(argQuery, argClass));
+    }
+
+    @Override
+    public long countByCollectionName(String argCollectionName) {
+        return Retry.execute("save", () -> this.mongoTemplate.getCollection(argCollectionName).countDocuments());
+    }
+
+    @Override
     public T getRecordById(String argId) {
         Preconditions.assertNotEmpty(argId, "Please provide a valid id to fetch the record: " + argId);
         Query query = new Query();

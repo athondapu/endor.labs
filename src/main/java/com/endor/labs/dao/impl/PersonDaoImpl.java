@@ -21,6 +21,11 @@ public class PersonDaoImpl extends AbstractDaoImpl<Person> implements PersonDao 
         this.mongoTemplate = mongoTemplate;
     }
 
+    /**
+     * It returns the Person record that matches the Name that we specified or else it returns null
+     * @param argName
+     * @return
+     */
     @Override
     public Person findByName(String argName) {
         Preconditions.assertNotEmpty(argName, "Please provide a valid name to fetch the record: " + argName);

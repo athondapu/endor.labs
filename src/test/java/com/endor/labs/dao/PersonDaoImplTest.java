@@ -4,7 +4,6 @@ import com.endor.labs.dao.impl.PersonDaoImpl;
 import com.endor.labs.model.Animal;
 import com.endor.labs.model.Person;
 import com.endor.labs.utils.IdGenerator;
-import org.junit.Before;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -13,8 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-
-import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

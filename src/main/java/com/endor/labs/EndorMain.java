@@ -12,6 +12,5 @@ public class EndorMain {
                         .bannerMode(Banner.Mode.OFF)
                         .sources(MainConfig.class),
                 args);
-//        SpringApplication.run(EndorMain.class,args);
     }
 }

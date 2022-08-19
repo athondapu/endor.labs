@@ -23,6 +23,11 @@ public class AnimalDaoImpl extends AbstractDaoImpl<Animal> implements AnimalDao 
         this.mongoTemplate = mongoTemplate;
     }
 
+    /**
+     * It returns the Animal record that matches the Name that we specified or else it returns null
+     * @param argName
+     * @return
+     */
     @Override
     public Animal findByName(String argName) {
         Preconditions.assertNotEmpty(argName, "Please provide a valid name to fetch the record: " + argName);

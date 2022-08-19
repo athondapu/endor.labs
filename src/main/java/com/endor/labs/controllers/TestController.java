@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/")
 public class TestController {
 
+    /**
+     * This method is only for testing whether our application is running or not.
+     * @return
+     */
     @GetMapping("/ping")
     @ResponseBody
     public String ping() {

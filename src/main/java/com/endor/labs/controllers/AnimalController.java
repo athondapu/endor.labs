@@ -17,6 +17,11 @@ public class AnimalController {
     @Autowired
     private AnimalDaoImpl animalDaoImpl;
 
+    /**
+     * THis method saves the animal data into the MongoDB
+     * @param animal
+     * @return Animal object, and it has all the fields like id, name and kind
+     */
     @PostMapping("/")
     @ResponseBody
     public Animal save(@RequestBody Animal animal) {
@@ -24,6 +29,11 @@ public class AnimalController {
         return result;
     }
 
+    /**
+     * This method pulls the record by id
+     * @param id
+     * @return Animal object which matches that id
+     */
     @RequestMapping("/{id}")
     @ResponseBody
     public Animal findById(@PathVariable String id) {
@@ -31,6 +41,10 @@ public class AnimalController {
         return result;
     }
 
+    /**
+     * It lists down all the animal records
+     * @return list of animal records
+     */
     @GetMapping("/")
     @ResponseBody
     public List<Animal> list() {
@@ -38,6 +52,11 @@ public class AnimalController {
         return results;
     }
 
+    /**
+     * It deletes the entry from the database by id
+     * @param id
+     * @return It returns the deleted record
+     */
     @DeleteMapping("/{id}")
     @ResponseBody
     public Animal delete(@PathVariable String id) {

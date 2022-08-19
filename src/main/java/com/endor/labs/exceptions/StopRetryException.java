@@ -1,6 +1,6 @@
 package com.endor.labs.exceptions;
 
-public class StopRetryException extends RetryException{
+public class StopRetryException extends RuntimeException {
 
     private static final long serialVersionUID = -4316630574878864210L;
 

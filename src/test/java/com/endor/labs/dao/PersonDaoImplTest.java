@@ -1,19 +1,24 @@
 package com.endor.labs.dao;
 
 import com.endor.labs.dao.impl.PersonDaoImpl;
+import com.endor.labs.exceptions.MaximumRetryException;
 import com.endor.labs.model.Animal;
 import com.endor.labs.model.Person;
 import com.endor.labs.utils.IdGenerator;
+import com.endor.labs.utils.Preconditions;
+import org.junit.Rule;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.rules.ExpectedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertThrows;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -21,6 +26,9 @@ public class PersonDaoImplTest {
 
     @Autowired
     private PersonDaoImpl personDaoImpl;
+
+    @Rule
+    public final ExpectedException exception = ExpectedException.none();
 
     /**
      * Declaring the id here as I am testing all CRUD operations with only one record.
@@ -43,7 +51,18 @@ public class PersonDaoImplTest {
         assertThat(this.id).isEqualTo(result.getId());
     }
 
+    /**
+     * This is the method throws an exception as Query argument is null.
+     */
     @Order(3)
+    @Test
+    public void checkPreconditionException() {
+        assertThrows(Preconditions.PreconditionException.class, () -> {
+            this.personDaoImpl.findOne(null);
+        });
+    }
+
+    @Order(4)
     @Test
     public void count() {
         Query query = new Query();
@@ -52,7 +71,7 @@ public class PersonDaoImplTest {
         assertThat(1).isEqualTo(count);
     }
 
-    @Order(4)
+    @Order(5)
     @Test
     public void delete() {
         Person result = this.personDaoImpl.deleteRecord(this.id);

@@ -1,4 +1,10 @@
 ### Endor Test Notes
+
+### Prerequisites
+1. Java
+2. MongoDB
+
+
 #### TechStack:
 1. Spring Boot
 2. MongoDB
@@ -15,6 +21,9 @@
 8. Those are `PersonDao` and `AnimalDao`. These classes have methods where which doesn't have common methods.
 9. Then added corresponding controllers `PersonController` and `AnimalController`. Where these controller are responsible to serve the HTTP requests.
 10. Also, added test cases for both Dao's and Controllers. The test cases includes both unit test and e2e (end-to-end) test cases. Created seperate folders for both.
+
+### Run the application
+1. Run the application by using the class called `EndorMain` under the `src/` folder.
 
 ### End-points
 

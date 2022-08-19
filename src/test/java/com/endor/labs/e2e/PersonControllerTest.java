@@ -37,7 +37,7 @@ public class PersonControllerTest {
      */
     private final String id = "123";
 
-    /*
+    /**
         This method save the record and assert the name that was inserted.
      */
     @Order(1)
@@ -53,6 +53,11 @@ public class PersonControllerTest {
                 .andExpect(jsonPath("$.name").exists());
     }
 
+    /**
+     * This method converts the object to a JSON string.
+     * @param obj
+     * @return
+     */
     public static String asJsonString(final Object obj) {
         try {
             return new ObjectMapper().writeValueAsString(obj);
@@ -61,7 +66,7 @@ public class PersonControllerTest {
         }
     }
 
-    /*
+    /**
         Sending an HTTP Request and assert the response. This is a findById end-point to check whether the record id is present or not.
      */
     @Order(2)
@@ -73,6 +78,9 @@ public class PersonControllerTest {
                 .andExpect(jsonPath("$.id").value(this.id));
     }
 
+    /**
+     This method get the list of records and assert them. In this case we know we inserted only one record and we assert wht that record.
+     */
     @Order(3)
     @Test
     public void list() throws Exception {
@@ -83,6 +91,10 @@ public class PersonControllerTest {
                 .andExpect(jsonPath("$[*].name", containsInAnyOrder("EndorE2E")));
     }
 
+    /**
+     * This method deletes the record and assert with the deleted record is equals to the has to be deleted record or not.
+     * @throws Exception
+     */
     @Order(4)
     @Test
     public void deleteRecord() throws Exception {

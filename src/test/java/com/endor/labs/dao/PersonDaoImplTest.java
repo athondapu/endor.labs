@@ -36,6 +36,9 @@ public class PersonDaoImplTest {
      */
     private static final String id = IdGenerator.getUuid();
 
+    /**
+     * Save
+     */
     @Order(1)
     @Test
     public void savePerson() {
@@ -44,6 +47,9 @@ public class PersonDaoImplTest {
         assertThat(person.getName()).isEqualTo(result.getName());
     }
 
+    /**
+     This is a findById end-point to check whether the record id is present or not.
+     */
     @Order(2)
     @Test
     public void getPerson() {
@@ -62,6 +68,9 @@ public class PersonDaoImplTest {
         });
     }
 
+    /**
+     * This will tell you how many records are present under this KIND.
+     */
     @Order(4)
     @Test
     public void count() {
@@ -71,6 +80,9 @@ public class PersonDaoImplTest {
         assertThat(1).isEqualTo(count);
     }
 
+    /**
+     * This method deletes the record that we specified and assert the count of records. In this case we inserted one and deleted that one record.
+     */
     @Order(5)
     @Test
     public void delete() {

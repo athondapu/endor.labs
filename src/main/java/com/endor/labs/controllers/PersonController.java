@@ -22,7 +22,7 @@ public class PersonController {
         return result;
     }
 
-    @RequestMapping("/{id}")
+    @GetMapping("/{id}")
     @ResponseBody
     public Person findById(@PathVariable String id) {
         Person result = personDaoImpl.getRecordById(id);

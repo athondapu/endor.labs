@@ -8,9 +8,9 @@ public interface GenericDao<T> {
 
     T save(T argData);
 
-    long count(Query argQuery, Class<?> argClass);
+    long count(Query argQuery,  String argCollectionName);
 
-    long countByCollectionName(String argCollectionName);
+    long count(String argCollectionName);
 
     T getRecordById(String argId);
 

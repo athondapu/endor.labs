@@ -30,12 +30,12 @@ public abstract class AbstractDaoImpl<T> implements GenericDao<T> {
     }
 
     @Override
-    public long count(Query argQuery, Class<?> argClass) {
-        return Retry.execute("save", () -> this.mongoTemplate.count(argQuery, argClass));
+    public long count(Query argQuery, String argCollectionName) {
+        return Retry.execute("save", () -> this.mongoTemplate.count(argQuery, argCollectionName));
     }
 
     @Override
-    public long countByCollectionName(String argCollectionName) {
+    public long count(String argCollectionName) {
         return Retry.execute("save", () -> this.mongoTemplate.getCollection(argCollectionName).countDocuments());
     }
 

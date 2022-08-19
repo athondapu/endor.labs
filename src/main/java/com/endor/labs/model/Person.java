@@ -4,7 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "person")
+@Document(collection = "item")
 public class Person {
 
     public static final String FILTER_ID = "id";
@@ -15,6 +15,8 @@ public class Person {
 
     @Indexed(background = true)
     private String name;
+
+    private String kind;
 
     public String getId() {
         return id;
@@ -31,6 +33,13 @@ public class Person {
 
     public Person setName(String name) {
         this.name = name;
+        return this;
+    }
+    public String getKind() {
+        return kind;
+    }
+    public Person setKind(String kind) {
+        this.kind = kind;
         return this;
     }
 }
